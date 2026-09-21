@@ -21,8 +21,34 @@ namespace NoLookingTest_2026_09_21
 {
     internal class Program
     {
+        //start with experience and levels
+        static int lvlUp;
+        static int lvlUpAmount;
+        static int expInc;
+        static int expIncAmount;
+
         static void Main()
         {
+            //Initiate
+            lvlUpAmount = 1;
+            lvlUp = lvlUpAmount;
+            expIncAmount = 25;
+            expInc = expIncAmount;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            //
+
+
+        }
+
+        static void LevelChecker()
+        {
+
+        }
+
+        static void XPGained(int xp)
+        {
+
         }
     }
 }
