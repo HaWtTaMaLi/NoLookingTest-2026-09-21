@@ -5,7 +5,7 @@
 
 //Combine what i know so far
 //make small game where player can roll for damage + heal
-//have a YouWin outcome and a YouLoose outcome
+//have a YouLoose outcome, cant have a YouWin if i want it to be infinate lol
 //have playerHealth and enemyHealth
 //give both player and enemy a HUD either separate or together
 //Combine it together with XP and LevelSystem 
