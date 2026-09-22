@@ -22,33 +22,66 @@ namespace NoLookingTest_2026_09_21
     internal class Program
     {
         //start with experience and levels
+        static int lVL;
         static int lvlUp;
-        static int lvlUpAmount;
+        static int lvlUpCost;
+
+        static int eXP;
         static int expInc;
-        static int expIncAmount;
+        static int expIncCost;
 
         static void Main()
         {
             //Initiate
-            lvlUpAmount = 1;
-            lvlUp = lvlUpAmount;
-            expIncAmount = 25;
-            expInc = expIncAmount;
+            lVL = 1;
+            lvlUpCost = 1;
+            lvlUp = lvlUpCost;
+
+            eXP = 0;
+            expIncCost = 25;
+            expInc = expIncCost;
+
             Console.ForegroundColor = ConsoleColor.White;
 
             //
+            HUD();
+            XPGained(100);
+            LvlUpChecker();
+            LvlUpChecker(); //if the amount is going to be more then the cost i need to run lvl up checker more 
+            HUD();
+
+            //Can move on to health next
 
 
         }
 
-        static void LevelChecker()
+        static void LvlUpChecker()
         {
+            //lvl checker would go somewhere in an update function so it's constantly checking?
+            if(eXP >= expInc)
+            {
+                lVL = lVL + lvlUp;
+                eXP = eXP - expInc;
 
+                expInc = expInc + expIncCost;
+            }
         }
 
         static void XPGained(int xp)
         {
+            eXP = xp + eXP;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nGained " + xp +"XP");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
+        static void HUD()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n-------Player------");
+            Console.WriteLine("Health: " + " | lvl: " + lVL);
+            Console.WriteLine("Exp: " + eXP + "/" + expInc);
+            Console.ForegroundColor = ConsoleColor.White;  
         }
     }
 }
