@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net;
 
 //using Microsoft C# Documentation only
 //no looking at old projects or old code
 
 //Combine what i know so far
-//make small game where player can roll for damage + heal
+//make small game where player can roll for "damage + heal"
 //have a YouLoose outcome, cant have a YouWin if i want it to be infinate lol
 //have playerHealth and enemyHealth
 //give both player and enemy a HUD either separate or together
@@ -77,6 +76,19 @@ namespace NoLookingTest_2026_09_21
             }
         }
 
+        static void PlayerHealthChecker()
+        {
+            //check if player health = 0
+            //if true you loose
+        }
+
+        static void EnemyHealthChecker()
+        {
+            //check if enemy health = 0 
+            //if enemy health = 0 reset the health
+            //and increase exp amount player gets per kill
+        }
+
         static void XPGained(int xp)
         {
             currEXP = xp + currEXP;
@@ -86,21 +98,8 @@ namespace NoLookingTest_2026_09_21
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        static void PlayerHUD()
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n--------Player-------");
-            Console.WriteLine("Health: " + currPlayerHealth + " | lvl: " + curLVL);
-            Console.WriteLine("   Exp: " + currEXP + "/" + expInc);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        static void EnemyHUD()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\n--------Enemy-------");
-            Console.WriteLine("Health: " + currEnemyHealth);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
+        //take damages will be inputted through random number gen
+        //initiated by player
 
         static void TakePlayerDamage(int dmg)
         {
@@ -132,6 +131,21 @@ namespace NoLookingTest_2026_09_21
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nYou healed +" + hp + " hp.");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void PlayerHUD()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n--------Player-------");
+            Console.WriteLine("Health: " + currPlayerHealth + " | lvl: " + curLVL);
+            Console.WriteLine("   Exp: " + currEXP + "/" + expInc);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void EnemyHUD()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n--------Enemy-------");
+            Console.WriteLine("Health: " + currEnemyHealth);
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
