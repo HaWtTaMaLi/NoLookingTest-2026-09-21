@@ -50,7 +50,7 @@ namespace NoLookingTest_2026_09_21
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            //
+            //Pretend play through
             PlayerHUD();
             EnemyHUD();
             XPGained(100);
@@ -60,7 +60,9 @@ namespace NoLookingTest_2026_09_21
             LvlUpChecker(); //if the amount is going to be more then the cost i need to run lvl up checker more 
             PlayerHUD();
             EnemyHUD();
-            //Can move on to health next
+            HealPlayer(5);
+            PlayerHUD();
+
         }
 
         static void LvlUpChecker()
@@ -69,8 +71,8 @@ namespace NoLookingTest_2026_09_21
             if(currEXP >= expInc)
             {
                 curLVL = curLVL + lvlUp;
-                currEXP = currEXP - expInc;
 
+                currEXP = currEXP - expInc;
                 expInc = expInc + expIncCost;
             }
         }
@@ -78,8 +80,9 @@ namespace NoLookingTest_2026_09_21
         static void XPGained(int xp)
         {
             currEXP = xp + currEXP;
+
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nGained " + xp +"XP");
+            Console.WriteLine("\nGained " + xp +"xp");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
@@ -89,11 +92,11 @@ namespace NoLookingTest_2026_09_21
             Console.WriteLine("\n--------Player-------");
             Console.WriteLine("Health: " + currPlayerHealth + " | lvl: " + curLVL);
             Console.WriteLine("   Exp: " + currEXP + "/" + expInc);
-            Console.ForegroundColor = ConsoleColor.White;  
+            Console.ForegroundColor = ConsoleColor.White;
         }
         static void EnemyHUD()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\n--------Enemy-------");
             Console.WriteLine("Health: " + currEnemyHealth);
             Console.ForegroundColor = ConsoleColor.White;
@@ -102,7 +105,11 @@ namespace NoLookingTest_2026_09_21
         static void TakePlayerDamage(int dmg)
         {
             currPlayerHealth = currPlayerHealth - dmg;
-            Console.WriteLine("You took damage -" + dmg + ".");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nYou took damage!");
+            Console.WriteLine("-" + dmg +" dmg");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         //somewhere in here i can probaly add a if the enemy health
@@ -112,7 +119,20 @@ namespace NoLookingTest_2026_09_21
         static void TakeEnemyDamage(int dmg)
         {
             currEnemyHealth = currEnemyHealth - dmg;
-            Console.WriteLine("Enemy took -" + dmg + " damage.");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nYou attacked the enemy");
+            Console.WriteLine("-" + dmg + " dmg delt.");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        static void HealPlayer(int hp)
+        {
+            currPlayerHealth = currPlayerHealth + hp;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nYou healed +" + hp + " hp.");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
