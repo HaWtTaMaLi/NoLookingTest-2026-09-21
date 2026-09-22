@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 //using Microsoft C# Documentation only
 //no looking at old projects or old code
@@ -21,25 +22,31 @@ namespace NoLookingTest_2026_09_21
 {
     internal class Program
     {
-        //start with experience and levels
-        static int lVL;
+        //Levels
+        static int curLVL;
         static int lvlUp;
         static int lvlUpCost;
-
-        static int eXP;
+        //Experience
+        static int currEXP;
         static int expInc;
         static int expIncCost;
+        //Health
+        static int currPlayerHealth;
+        static int currEnemyHealth;
 
         static void Main()
         {
             //Initiate
-            lVL = 1;
+            curLVL = 1;
             lvlUpCost = 1;
             lvlUp = lvlUpCost;
 
-            eXP = 0;
+            currEXP = 0;
             expIncCost = 25;
             expInc = expIncCost;
+
+            currPlayerHealth = 100;
+            currEnemyHealth = 100;
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -51,17 +58,15 @@ namespace NoLookingTest_2026_09_21
             HUD();
 
             //Can move on to health next
-
-
         }
 
         static void LvlUpChecker()
         {
             //lvl checker would go somewhere in an update function so it's constantly checking?
-            if(eXP >= expInc)
+            if(currEXP >= expInc)
             {
-                lVL = lVL + lvlUp;
-                eXP = eXP - expInc;
+                curLVL = curLVL + lvlUp;
+                currEXP = currEXP - expInc;
 
                 expInc = expInc + expIncCost;
             }
@@ -69,7 +74,7 @@ namespace NoLookingTest_2026_09_21
 
         static void XPGained(int xp)
         {
-            eXP = xp + eXP;
+            currEXP = xp + currEXP;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nGained " + xp +"XP");
             Console.ForegroundColor = ConsoleColor.White;
@@ -78,10 +83,20 @@ namespace NoLookingTest_2026_09_21
         static void HUD()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n-------Player------");
-            Console.WriteLine("Health: " + " | lvl: " + lVL);
-            Console.WriteLine("Exp: " + eXP + "/" + expInc);
+            Console.WriteLine("\n--------Player-------");
+            Console.WriteLine("Health: "+ currPlayerHealth + " | lvl: " + curLVL);
+            Console.WriteLine("   Exp: " + currEXP + "/" + expInc);
             Console.ForegroundColor = ConsoleColor.White;  
+        }
+
+        static void TakePlayerDamage(int dmg)
+        {
+            currPlayerHealth = currPlayerHealth - dmg;
+        }
+
+        static void TakeEnemyDamage(int dmg)
+        {
+            currEnemyHealth = currEnemyHealth - dmg;
         }
     }
 }
